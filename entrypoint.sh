@@ -21,4 +21,9 @@ if [ -z "$NANOBOT_WEB_TOKEN" ]; then
     echo "[entrypoint] warning: NANOBOT_WEB_TOKEN is empty — the WebUI login will not work" >&2
 fi
 
-exec nanobot "$@" --config "$CONFIG"
+# Top-level flags such as --version are not subcommands and do not accept
+# --config; everything else (gateway, status, agent, …) does.
+case "$1" in
+    -*|"") exec nanobot "$@" ;;
+    *) exec nanobot "$@" --config "$CONFIG" ;;
+esac
