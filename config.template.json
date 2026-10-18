@@ -1,0 +1,38 @@
+{
+  "agents": {
+    "defaults": {
+      "modelPreset": "mimo",
+      "workspace": "/app/storage/workspace"
+    }
+  },
+  "providers": {
+    "xiaomi": {
+      "apiKey": "${XIAOMI_API_KEY}",
+      "apiBase": "https://token-plan-ams.xiaomimimo.com/v1"
+    }
+  },
+  "modelPresets": {
+    "mimo": {
+      "provider": "xiaomi",
+      "model": "mimo-v2.6-pro",
+      "maxTokens": 32768,
+      "contextWindowTokens": 1048576
+    }
+  },
+  "gateway": {
+    "host": "127.0.0.1",
+    "port": 18790
+  },
+  "channels": {
+    "websocket": {
+      "enabled": true,
+      "host": "0.0.0.0",
+      "port": 5000,
+      "tokenIssueSecret": "${NANOBOT_WEB_TOKEN}",
+      "websocketRequiresToken": true
+    }
+  },
+  "tools": {
+    "restrictToWorkspace": true
+  }
+}
